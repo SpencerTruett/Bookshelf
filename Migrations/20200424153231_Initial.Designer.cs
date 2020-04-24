@@ -10,7 +10,7 @@ using MyBookshelfApp.Data;
 namespace MyBookshelfApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200424150436_Initial")]
+    [Migration("20200424153231_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -233,7 +233,7 @@ namespace MyBookshelfApp.Migrations
                         {
                             Id = "00000000-ffff-ffff-ffff-ffffffffffff",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ef3b3ce7-bd2b-4fd9-9a55-06d015c95afe",
+                            ConcurrencyStamp = "5c5e10ce-8ff6-4193-98f3-162fe8693cb5",
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
                             FirstName = "admin",
@@ -241,7 +241,7 @@ namespace MyBookshelfApp.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAELnmBYlPcndT+rpDyZh295QcY7zLI+eWj56MXAsJCbEzKxn5VV7DYM0k3M8m3G7Iqg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDTDz1UlLwR7sh73zMEDsyGER3JjS0Y1hD02MqGy0Zqj4qAaBF992WXAQ7fg+SZgLw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "7f434309-a4d9-48e9-9ebb-8803db794577",
                             TwoFactorEnabled = false,
@@ -256,7 +256,8 @@ namespace MyBookshelfApp.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("ApplicationUserId")
+                    b.Property<string>("ApplicationuserId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Author")
@@ -267,9 +268,31 @@ namespace MyBookshelfApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ApplicationUserId");
+                    b.HasIndex("ApplicationuserId");
 
                     b.ToTable("Books");
+                });
+
+            modelBuilder.Entity("MyBookshelfApp.Models.BookGenre", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("BookId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("GenreId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BookId");
+
+                    b.HasIndex("GenreId");
+
+                    b.ToTable("BookGenre");
                 });
 
             modelBuilder.Entity("MyBookshelfApp.Models.Genre", b =>
@@ -377,9 +400,26 @@ namespace MyBookshelfApp.Migrations
 
             modelBuilder.Entity("MyBookshelfApp.Models.Book", b =>
                 {
-                    b.HasOne("MyBookshelfApp.Models.ApplicationUser", null)
+                    b.HasOne("MyBookshelfApp.Models.ApplicationUser", "ApplicationUser")
                         .WithMany("Books")
-                        .HasForeignKey("ApplicationUserId");
+                        .HasForeignKey("ApplicationuserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("MyBookshelfApp.Models.BookGenre", b =>
+                {
+                    b.HasOne("MyBookshelfApp.Models.Book", "Book")
+                        .WithMany("BookGenres")
+                        .HasForeignKey("BookId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MyBookshelfApp.Models.Genre", "Genre")
+                        .WithMany("BookGenres")
+                        .HasForeignKey("GenreId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

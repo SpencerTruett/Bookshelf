@@ -9,5 +9,6 @@ namespace MyBookshelfApp.Models
     {
         public int Id { get; set; }
         public string Title { get; set; }
+        public List<BookGenre> BookGenres { get; set; }
     }
 }
