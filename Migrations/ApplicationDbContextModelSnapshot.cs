@@ -231,7 +231,7 @@ namespace MyBookshelfApp.Migrations
                         {
                             Id = "00000000-ffff-ffff-ffff-ffffffffffff",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "5c5e10ce-8ff6-4193-98f3-162fe8693cb5",
+                            ConcurrencyStamp = "42ad38e2-bf83-45ab-9d17-65dea038f90d",
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
                             FirstName = "admin",
@@ -239,7 +239,7 @@ namespace MyBookshelfApp.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEDTDz1UlLwR7sh73zMEDsyGER3JjS0Y1hD02MqGy0Zqj4qAaBF992WXAQ7fg+SZgLw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEI0eBoALI9bkSnrdS1wn76hy5r+iZ6ABnNnCaEcrZQ8Ol2JV+zYz3t2F8GAzlJx4Gw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "7f434309-a4d9-48e9-9ebb-8803db794577",
                             TwoFactorEnabled = false,
@@ -290,7 +290,7 @@ namespace MyBookshelfApp.Migrations
 
                     b.HasIndex("GenreId");
 
-                    b.ToTable("BookGenre");
+                    b.ToTable("BookGenres");
                 });
 
             modelBuilder.Entity("MyBookshelfApp.Models.Genre", b =>

@@ -1,4 +1,4 @@
-﻿@model MyBookshelfApp.Models.Book
+﻿@model MyBookshelfApp.Models.ViewModels.BookFormViewModel
 
 @{
     ViewData["Title"] = "Edit";
@@ -6,7 +6,6 @@
 
 <h1>Edit</h1>
 
-<h4>Book</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -22,6 +21,13 @@
                 <label asp-for="Author" class="control-label"></label>
                 <input asp-for="Author" class="form-control" />
                 <span asp-validation-for="Author" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GenreIds" class="control-label">Genres</label>
+                <select multiple asp-for="GenreIds" asp-items="@Model.GenreOptions" class="form-control">
+                    <option disabled>Select Genres</option>
+                </select>
+                <span asp-validation-for="GenreIds" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

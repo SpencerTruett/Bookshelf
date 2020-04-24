@@ -17,6 +17,7 @@ namespace MyBookshelfApp.Data
         public DbSet<ApplicationUser> ApplicationUser { get; set; }
         public DbSet<Book> Books { get; set; }
         public DbSet<Genre> Genres { get; set; }
+        public DbSet<BookGenre> BookGenres { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

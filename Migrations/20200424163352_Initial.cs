@@ -189,7 +189,7 @@ namespace MyBookshelfApp.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "BookGenre",
+                name: "BookGenres",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -199,15 +199,15 @@ namespace MyBookshelfApp.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BookGenre", x => x.Id);
+                    table.PrimaryKey("PK_BookGenres", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_BookGenre_Books_BookId",
+                        name: "FK_BookGenres_Books_BookId",
                         column: x => x.BookId,
                         principalTable: "Books",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_BookGenre_Genres_GenreId",
+                        name: "FK_BookGenres_Genres_GenreId",
                         column: x => x.GenreId,
                         principalTable: "Genres",
                         principalColumn: "Id",
@@ -217,7 +217,7 @@ namespace MyBookshelfApp.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "00000000-ffff-ffff-ffff-ffffffffffff", 0, "5c5e10ce-8ff6-4193-98f3-162fe8693cb5", "admin@admin.com", true, "admin", "admin", false, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAEAACcQAAAAEDTDz1UlLwR7sh73zMEDsyGER3JjS0Y1hD02MqGy0Zqj4qAaBF992WXAQ7fg+SZgLw==", null, false, "7f434309-a4d9-48e9-9ebb-8803db794577", false, "admin@admin.com" });
+                values: new object[] { "00000000-ffff-ffff-ffff-ffffffffffff", 0, "42ad38e2-bf83-45ab-9d17-65dea038f90d", "admin@admin.com", true, "admin", "admin", false, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAEAACcQAAAAEI0eBoALI9bkSnrdS1wn76hy5r+iZ6ABnNnCaEcrZQ8Ol2JV+zYz3t2F8GAzlJx4Gw==", null, false, "7f434309-a4d9-48e9-9ebb-8803db794577", false, "admin@admin.com" });
 
             migrationBuilder.InsertData(
                 table: "Genres",
@@ -273,13 +273,13 @@ namespace MyBookshelfApp.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BookGenre_BookId",
-                table: "BookGenre",
+                name: "IX_BookGenres_BookId",
+                table: "BookGenres",
                 column: "BookId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BookGenre_GenreId",
-                table: "BookGenre",
+                name: "IX_BookGenres_GenreId",
+                table: "BookGenres",
                 column: "GenreId");
 
             migrationBuilder.CreateIndex(
@@ -306,7 +306,7 @@ namespace MyBookshelfApp.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "BookGenre");
+                name: "BookGenres");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
